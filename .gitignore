@@ -1,0 +1,19 @@
+# Dependencies and build output
+node_modules
+.next
+out
+*.tsbuildinfo
+
+# Secrets: never upload real keys (.env.example only lists the names, so it's kept)
+.env*
+!.env.example
+
+# Local data (accounts, journals, votes saved on this laptop)
+.data
+
+# Vercel project link
+.vercel
+
+# System files
+.DS_Store
+Thumbs.db

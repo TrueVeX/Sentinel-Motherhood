@@ -1,0 +1,5 @@
+# Never upload secrets or local data when deploying.
+.env*
+.data
+.next
+node_modules
