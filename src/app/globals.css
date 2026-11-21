@@ -440,3 +440,7 @@ button.stage-card { font: inherit; text-align: left; cursor: pointer; width: 100
   .stage-grid { grid-template-columns: 1fr; }
   .hero-actions { align-items: flex-start; flex-direction: column; }
 }
+
+/* Owner credit shown at the very top of every page */
+.owner-bar { background: var(--deep); color: var(--mint); text-align: center; font-size: 12px; letter-spacing: .08em; padding: 7px 16px; line-height: 1.4; }
+.owner-bar strong { color: var(--ivory); font-weight: 700; }

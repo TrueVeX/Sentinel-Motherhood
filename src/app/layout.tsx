@@ -51,6 +51,7 @@ export default async function RootLayout({
         <I18nProvider lang={lang}>
         <ClickEffects />
         <AppMode />
+        <div className="owner-bar">Made By <strong>Revoori Krithika Reddy</strong></div>
         <Header user={user ? { name: user.name, role: user.role } : null} unread={unread} />
         <main>{children}</main>
         <footer className="site-footer">
