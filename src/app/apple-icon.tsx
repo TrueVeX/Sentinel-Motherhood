@@ -9,19 +9,14 @@ export default function AppleIcon() {
     (
       <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "#123F46" }}>
         <svg width="132" height="132" viewBox="0 0 48 48">
-          <path
-            d="M24 4.5 40 10v11.2c0 10.1-6.6 17.7-16 22.3C14.6 38.9 8 31.3 8 21.2V10L24 4.5Z"
-            fill="none"
-            stroke="#F4F7F2"
-            strokeWidth="2.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M17.1 20.8c0-3.2 2.2-5.4 5-5.4 1.1 0 2.2.5 2.9 1.4.8-.9 1.9-1.4 3-1.4 2.7 0 4.9 2.2 4.9 5.4 0 4.2-5.2 8-7.9 10-2.7-2-7.9-5.8-7.9-10Z"
-            fill="#A8CFC3"
-          />
-          <path d="M14.5 34.2c2.8-2.8 5.9-4.2 9.5-4.2s6.7 1.4 9.5 4.2" fill="none" stroke="#F4F7F2" strokeWidth="2.2" strokeLinecap="round" />
+          <g transform="translate(2 0.5)" fill="none" stroke="#F4F7F2" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="19" cy="10.5" r="5" />
+            <path d="M14 18.5C9.8 21 7.5 26 7.5 32.5V42" />
+            <path d="M24 18.2c2.2.6 4 1.5 5.4 2.6" />
+            <path d="M28.6 26.8c-3.2-.6-7.8.4-10.8 2.8-2 1.6-1.8 3.8.6 4.4 3.6.9 8.8-.6 11.6-3.2" fill="#A8CFC3" stroke="#A8CFC3" />
+            <circle cx="32" cy="24.5" r="3.8" fill="#A8CFC3" stroke="#A8CFC3" />
+            <path d="M10.5 29.5c2.5 5.8 9 8.8 16.2 7.6 4.6-.8 8.2-3.6 9.8-7.4" />
+          </g>
         </svg>
       </div>
     ),

@@ -11,7 +11,10 @@ const TILES = [
   { href: "/newborn-care", icon: "☼", label: "Baby care" },
   { href: "/mother-care", icon: "♡", label: "Mother care" },
   { href: "/tools", icon: "✓", label: "Tools" },
-  { href: "/ai-assistant", icon: "✎", label: "Ask the AI" }
+  { href: "/ai-assistant", icon: "✎", label: "Ask the AI" },
+  { href: "/care", icon: "🌤", label: "Daily care" },
+  { href: "/emergency#kit", icon: "🆘", label: "Emergency kit" },
+  { href: "/emergency/labour", icon: "⏱", label: "Labour mode" }
 ];
 
 /**

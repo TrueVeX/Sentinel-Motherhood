@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { offlineAnswers, suggestedQuestions } from "./data";
+import { useI18n } from "./I18n";
 
 type Message = { role: "user" | "assistant"; content: string; offline?: boolean };
 
@@ -34,6 +35,7 @@ function offlineAnswer(question: string) {
 }
 
 export default function Chat({ prefill }: { prefill: { text: string; id: number } | null }) {
+  const { lang } = useI18n();
   const [messages, setMessages] = useState<Message[]>([GREETING]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -81,6 +83,7 @@ export default function Chat({ prefill }: { prefill: { text: string; id: number 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          lang,
           messages: history.filter((m) => m !== GREETING && !m.offline).map(({ role, content }) => ({ role, content }))
         })
       });

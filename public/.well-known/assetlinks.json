@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.sentinelmotherhood",
+      "sha256_cert_fingerprints": [
+        "F2:DC:39:06:E5:2E:B7:C3:6D:39:79:43:4D:0A:43:24:32:39:FE:28:BE:C1:AB:63:F1:BE:2C:D5:7D:0C:E7:4C"
+      ]
+    }
+  }
+]

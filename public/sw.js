@@ -1,7 +1,7 @@
 // Sentinel Motherhood service worker.
 // Kept deliberately small: it only shows a friendly offline page when a page can't load.
 // It never caches pages or personal data, so signed-in content is always fresh and private.
-const CACHE = "sentinel-offline-v1";
+const CACHE = "sentinel-offline-v2";
 const OFFLINE_URL = "/offline.html";
 
 self.addEventListener("install", (event) => {

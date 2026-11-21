@@ -1,4 +1,5 @@
 import { update } from "@/lib/store";
+import { AI_LANGUAGE, toLang } from "@/lib/i18n";
 
 export const runtime = "nodejs";
 
@@ -16,6 +17,8 @@ const PROVIDERS = {
 
 // Free OpenRouter models get busy, so OpenRouter tries these in order until one answers.
 const OPENROUTER_BACKUPS = ["google/gemma-4-26b-a4b-it:free", "nvidia/nemotron-3.5-lightning:free"];
+// For Hindi and Telugu, only models that write those languages well (the small model mixes languages).
+const MULTILINGUAL_MODELS = ["google/gemma-4-31b-it:free", "nvidia/nemotron-3-ultra-550b-a55b:free", "google/gemma-4-26b-a4b-it:free"];
 
 function pickProvider() {
   // Any of these names works: OPENROUTER_API_KEY, NVIDIA_API_KEY or plain API_KEY.
@@ -58,6 +61,12 @@ export async function POST(request: Request) {
     return Response.json({ error: "bad_request" }, { status: 400 });
   }
   const messages = cleanMessages((body as { messages?: unknown })?.messages);
+  const lang = toLang((body as { lang?: string })?.lang);
+  const script = lang === "hi" ? "Devanagari" : "Telugu";
+  const languageRule =
+    lang === "en"
+      ? ""
+      : `\nAlways reply only in ${AI_LANGUAGE[lang]}, written in ${script} script, using simple, correct everyday words a mother would use. Never mix in words from any other language. Keep medical terms that have no common ${AI_LANGUAGE[lang]} word in English.`;
   if (!messages) return Response.json({ error: "bad_request" }, { status: 400 });
   count("questions");
 
@@ -77,9 +86,9 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         model: provider.model,
         ...(provider.isOpenRouter && !process.env.AI_MODEL
-          ? { models: [provider.model, ...OPENROUTER_BACKUPS] }
+          ? { models: lang === "en" ? [provider.model, ...OPENROUTER_BACKUPS] : MULTILINGUAL_MODELS }
           : {}),
-        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+        messages: [{ role: "system", content: SYSTEM_PROMPT + languageRule }, ...messages],
         temperature: 0.5,
         // Some backup models "think" before answering; keep that short and hidden, and leave room for the answer.
         max_tokens: provider.isOpenRouter ? 1500 : 400,

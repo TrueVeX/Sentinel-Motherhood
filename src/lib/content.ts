@@ -209,7 +209,9 @@ export const TOOLS = [
   { href: "/tools/hospital-checklist", title: "Hospital bag checklist", text: "Pack for the big day and track your progress.", icon: "✓" },
   { href: "/tools/baby-names", title: "Baby name explorer", text: "Browse names, filter them and save your favourites.", icon: "✎" },
   { href: "/appointments", title: "Appointments", text: "Keep track of check-ups and scans (sign in needed).", icon: "▣" },
-  { href: "/emergency", title: "Nearby hospitals", text: "Find hospitals near you on a map.", icon: "📍" }
+  { href: "/emergency", title: "Nearby hospitals", text: "Find hospitals, pharmacies, clinics and blood banks near you.", icon: "📍" },
+  { href: "/emergency#kit", title: "Emergency kit", text: "SOS location sharing, emergency contacts, medical card and labour mode.", icon: "🆘" },
+  { href: "/care", title: "Daily care", text: "Kick counter, vitamins, vaccines, baby log, growth chart and mood check-in.", icon: "🌤" }
 ];
 
 // ---- Search ----

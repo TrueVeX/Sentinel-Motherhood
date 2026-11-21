@@ -15,18 +15,56 @@
     p { color: rgba(244, 247, 242, .78); line-height: 1.6; margin: 0 0 20px; }
     button { border: 0; border-radius: 8px; background: var(--mint); color: var(--deep); font-weight: 700; padding: 13px 22px; font-size: 14px; cursor: pointer; }
     .sos { margin-top: 18px; font-size: 13px; color: #F6D9CF; }
+    .kit { margin-top: 22px; text-align: left; background: rgba(255,255,255,.08); border-radius: 12px; padding: 14px 16px; }
+    .kit h2 { margin: 0 0 8px; font: 600 16px Georgia, serif; color: var(--mint); }
+    .kit dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 14px; }
+    .kit dt { color: rgba(244,247,242,.6); }
+    .kit dd { margin: 0; white-space: pre-wrap; }
+    .kit a { color: var(--mint); font-weight: 700; }
+    .kit ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14px; }
   </style>
 </head>
 <body>
   <div class="card">
     <svg viewBox="0 0 48 48" fill="none" stroke="#A8CFC3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M24 4.5 40 10v11.2c0 10.1-6.6 17.7-16 22.3C14.6 38.9 8 31.3 8 21.2V10L24 4.5Z" />
-      <path d="M17.1 20.8c0-3.2 2.2-5.4 5-5.4 1.1 0 2.2.5 2.9 1.4.8-.9 1.9-1.4 3-1.4 2.7 0 4.9 2.2 4.9 5.4 0 4.2-5.2 8-7.9 10-2.7-2-7.9-5.8-7.9-10Z" />
+      <g transform="translate(2 0.5)">
+        <circle cx="19" cy="10.5" r="5" />
+        <path d="M14 18.5C9.8 21 7.5 26 7.5 32.5V42" />
+        <path d="M24 18.2c2.2.6 4 1.5 5.4 2.6" />
+        <circle cx="32" cy="24.5" r="3.8" />
+        <path d="M28.6 26.8c-3.2-.6-7.8.4-10.8 2.8-2 1.6-1.8 3.8.6 4.4 3.6.9 8.8-.6 11.6-3.2" />
+        <path d="M10.5 29.5c2.5 5.8 9 8.8 16.2 7.6 4.6-.8 8.2-3.6 9.8-7.4" />
+      </g>
     </svg>
     <h1>You’re offline</h1>
     <p>Sentinel needs an internet connection. Check your Wi-Fi or mobile data and try again.</p>
     <button onclick="location.reload()">Try again</button>
     <p class="sos">In an emergency, call your local emergency number.</p>
+    <div id="kit"></div>
   </div>
+  <script>
+    // Show the medical card and emergency contacts saved on this device (they never leave it).
+    (function () {
+      function read(key) { try { return JSON.parse(localStorage.getItem(key) || "null"); } catch (e) { return null; } }
+      function el(tag, text) { var e = document.createElement(tag); if (text) e.textContent = text; return e; }
+      function tel(phone) { var a = el("a", phone); a.href = "tel:" + String(phone).replace(/[^+\d]/g, ""); return a; }
+      var root = document.getElementById("kit"), card = read("sm-medical"), contacts = read("sm-contacts") || [];
+      if (card && Object.keys(card).some(function (k) { return card[k]; })) {
+        var box = el("div"); box.className = "kit"; box.appendChild(el("h2", "My medical card"));
+        var dl = el("dl");
+        [["Blood group", "blood"], ["Allergies", "allergies"], ["Conditions", "conditions"], ["Medicines", "medicines"], ["Due date", "dueDate"], ["Doctor", "doctor"], ["Doctor's phone", "doctorPhone", 1], ["Hospital", "hospital"], ["Hospital phone", "hospitalPhone", 1]].forEach(function (f) {
+          if (!card[f[1]]) return;
+          dl.appendChild(el("dt", f[0])); var dd = el("dd"); dd.appendChild(f[2] ? tel(card[f[1]]) : document.createTextNode(card[f[1]])); dl.appendChild(dd);
+        });
+        box.appendChild(dl); root.appendChild(box);
+      }
+      if (contacts.length) {
+        var c = el("div"); c.className = "kit"; c.appendChild(el("h2", "Emergency contacts"));
+        var ul = el("ul");
+        contacts.forEach(function (p) { var li = el("li", p.name + (p.relation ? " (" + p.relation + ")" : "") + ": "); li.appendChild(tel(p.phone)); ul.appendChild(li); });
+        c.appendChild(ul); root.appendChild(c);
+      }
+    })();
+  </script>
 </body>
 </html>

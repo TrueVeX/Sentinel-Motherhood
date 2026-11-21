@@ -1,13 +1,17 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import "./globals.css";
 import "./pages.css";
+import "./theme.css";
 import { getCurrentUser } from "@/lib/auth";
 import { unreadCount } from "@/lib/notify";
 import Header, { BrandMark } from "./Header";
 import KioskMode from "./Kiosk";
 import ClickEffects from "./ClickEffects";
 import AppMode from "./AppMode";
+import { I18nProvider } from "./I18n";
+import { LANG_COOKIE, toLang } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Sentinel Motherhood | Guiding motherhood, nurturing generations",
@@ -29,10 +33,21 @@ export default async function RootLayout({
 }>) {
   const user = await getCurrentUser();
   const unread = user ? await unreadCount(user.id) : 0;
+  const lang = toLang((await cookies()).get(LANG_COOKIE)?.value);
 
   return (
-    <html lang="en">
+    <html lang={lang} suppressHydrationWarning>
+      <head>
+        {/* Apply the saved text size and theme before the page paints, so there's no flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var d=document.documentElement,s=localStorage.getItem('sm-size'),t=localStorage.getItem('sm-theme');if(s)d.dataset.size=JSON.parse(s);if(t)d.dataset.theme=JSON.parse(t);}catch(e){}"
+          }}
+        />
+      </head>
       <body>
+        <I18nProvider lang={lang}>
         <ClickEffects />
         <AppMode />
         <Header user={user ? { name: user.name, role: user.role } : null} unread={unread} />
@@ -54,6 +69,7 @@ export default async function RootLayout({
             <span className="footer-small">© {new Date().getFullYear()} Sentinel Motherhood. Built with care.</span>
           </div>
         </footer>
+        </I18nProvider>
       </body>
     </html>
   );
