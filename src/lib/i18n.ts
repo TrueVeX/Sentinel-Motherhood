@@ -222,7 +222,8 @@ const en: Dict = {
 
   "app.signup": "Create a free account",
   "app.login": "I already have an account",
-  "app.emergencyHelp": "Emergency help & nearby hospitals"
+  "app.emergencyHelp": "Emergency help & nearby hospitals",
+  "download.app": "Download the app"
 };
 
 const hi: Dict = {
@@ -431,7 +432,8 @@ const hi: Dict = {
 
   "app.signup": "मुफ़्त अकाउंट बनाएँ",
   "app.login": "मेरा अकाउंट पहले से है",
-  "app.emergencyHelp": "आपातकालीन मदद और पास के अस्पताल"
+  "app.emergencyHelp": "आपातकालीन मदद और पास के अस्पताल",
+  "download.app": "ऐप डाउनलोड करें"
 };
 
 const te: Dict = {
@@ -640,7 +642,8 @@ const te: Dict = {
 
   "app.signup": "ఉచిత ఖాతా సృష్టించండి",
   "app.login": "నాకు ఇప్పటికే ఖాతా ఉంది",
-  "app.emergencyHelp": "అత్యవసర సహాయం & సమీప ఆసుపత్రులు"
+  "app.emergencyHelp": "అత్యవసర సహాయం & సమీప ఆసుపత్రులు",
+  "download.app": "యాప్ డౌన్‌లోడ్ చేయండి"
 };
 
 const DICTS: Record<Lang, Dict> = { en, hi, te };

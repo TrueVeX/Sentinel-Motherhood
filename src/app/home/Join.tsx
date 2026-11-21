@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { load, save } from "@/lib/browser-storage";
 import { useReveals } from "./hooks";
+import DownloadAppLink from "../DownloadAppLink";
 
 const DAY = 86400000;
 
@@ -94,6 +95,7 @@ export default function Join({ signedIn }: { signedIn: boolean }) {
             <Link href="/tools">Explore the tools ↗</Link>
             <Link href="/emergency" className="ld-emergency">Emergency help ↗</Link>
           </div>
+          <DownloadAppLink className="ld-btn ld-download" />
         </div>
       </div>
 

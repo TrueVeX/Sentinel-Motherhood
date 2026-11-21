@@ -231,3 +231,5 @@
   .ld [data-reveal] { transform: none; }
   .ld-journey, .ld-orbits { transition: none; }
 }
+
+.ld-download { margin-top: 18px; display: inline-flex; text-decoration: none; }

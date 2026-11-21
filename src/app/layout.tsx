@@ -12,6 +12,7 @@ import ClickEffects from "./ClickEffects";
 import AppMode from "./AppMode";
 import { I18nProvider } from "./I18n";
 import { LANG_COOKIE, toLang } from "@/lib/i18n";
+import DownloadAppLink from "./DownloadAppLink";
 
 export const metadata: Metadata = {
   title: "Sentinel Motherhood | Guiding motherhood, nurturing generations",
@@ -63,6 +64,7 @@ export default async function RootLayout({
             <Link href="/emergency">Emergency help</Link>
             <Link href="/search">Search</Link>
           </nav>
+          <DownloadAppLink />
           <KioskMode />
           <div className="footer-credits">
             <span className="footer-owner">Made By Revoori Krithika Reddy</span>

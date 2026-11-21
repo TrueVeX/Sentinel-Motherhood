@@ -701,3 +701,9 @@ html[data-size="xl"] { zoom: 1.25; }
 .photo-view { position: fixed; inset: 0; z-index: 100; background: rgba(15, 37, 41, .92); display: grid; place-items: center; padding: 20px; cursor: zoom-out; }
 .photo-view img { max-width: 100%; max-height: 90vh; border-radius: 10px; }
 .photo-view .dialog-close { position: absolute; top: 16px; right: 16px; }
+
+/* Link to the download website (hidden inside the installed apps) */
+.download-app-link { display: inline-flex; align-items: center; gap: 6px; align-self: center; border: 1px solid var(--teal); color: var(--teal); border-radius: 999px; padding: 8px 16px; font-size: 13px; font-weight: 700; text-decoration: none; transition: background .2s, color .2s; }
+.download-app-link:hover { background: var(--teal); color: #fff; }
+.app-download { display: block; text-align: center; margin-top: 10px; background: var(--deep); color: var(--ivory); font-weight: 700; font-size: 14px; padding: 14px; border-radius: 12px; text-decoration: none; }
+.app-download:hover { background: var(--teal); }

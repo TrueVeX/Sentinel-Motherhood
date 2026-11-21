@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser, homeFor } from "@/lib/auth";
 import { BrandMark } from "../Header";
+import DownloadAppLink from "../DownloadAppLink";
 
 export const metadata = { title: "Sentinel Motherhood" };
 
@@ -47,6 +48,7 @@ export default async function AppStart() {
       </div>
 
       <Link href="/emergency" className="app-emergency">📍 Emergency help & nearby hospitals</Link>
+      <DownloadAppLink className="app-download" />
     </section>
   );
 }
