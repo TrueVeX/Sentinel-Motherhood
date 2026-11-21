@@ -1,0 +1,51 @@
+{
+  "name": "sentinel-motherhood-desktop",
+  "productName": "Sentinel Motherhood",
+  "version": "1.1.0",
+  "description": "Sentinel Motherhood: guiding motherhood, nurturing generations.",
+  "author": { "name": "Revoori Krithika Reddy", "email": "246494956+TrueVeX@users.noreply.github.com" },
+  "homepage": "https://sentinel-motherhood.vercel.app",
+  "license": "MIT",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --publish never"
+  },
+  "devDependencies": {
+    "electron": "45.2.3",
+    "electron-builder": "26.18.1"
+  },
+  "build": {
+    "appId": "app.vercel.sentinelmotherhood.desktop",
+    "productName": "Sentinel Motherhood",
+    "copyright": "Made by Revoori Krithika Reddy",
+    "files": ["main.js", "offline.html", "build/icon.png"],
+    "directories": { "output": "dist", "buildResources": "build" },
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "artifactName": "Sentinel-Motherhood-Windows-Setup.exe",
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "Sentinel Motherhood"
+    },
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["universal"] }],
+      "category": "public.app-category.medical",
+      "icon": "build/icon.png",
+      "identity": "-",
+      "artifactName": "Sentinel-Motherhood-macOS.dmg"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "MedicalSoftware",
+      "icon": "build/icon.png",
+      "maintainer": "TrueVeX <246494956+TrueVeX@users.noreply.github.com>",
+      "artifactName": "Sentinel-Motherhood-Linux.${ext}"
+    }
+  }
+}

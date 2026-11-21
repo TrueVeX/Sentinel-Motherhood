@@ -3,3 +3,8 @@
 .data
 .next
 node_modules
+
+# Desktop apps and the download site are built on GitHub, not Vercel.
+desktop
+download-site
+.github

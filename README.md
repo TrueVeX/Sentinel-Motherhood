@@ -7,7 +7,7 @@ A web app that walks mothers and their families through pregnancy, birth and the
 Made by **Revoori Krithika Reddy** as a science fair project.
 
 🌐 **Live site:** https://sentinel-motherhood.vercel.app
-📱 **Install as an app:** open https://sentinel-motherhood.vercel.app/app in Chrome (Android) or Edge/Chrome (Windows) and choose **Install**.
+⬇️ **Download the app:** https://truevex.github.io/Sentinel-Motherhood/ (Android, Windows, macOS, Linux, and iPhone via Safari → Add to Home Screen)
 
 > Sentinel gives general information only. It is not a substitute for a doctor or midwife. In an emergency, call your local emergency number.
 
@@ -107,6 +107,12 @@ All settings are listed in [`.env.example`](.env.example). Never commit real val
 Step-by-step setup for Google and Apple sign-in: [SIGN-IN-SETUP.md](SIGN-IN-SETUP.md).
 
 ---
+
+## Desktop and Android apps
+
+- `desktop/` is the Electron app for Windows, macOS and Linux. Pushing a tag like `v1.2.0` runs `.github/workflows/release.yml`, which builds all three on GitHub and attaches them to a Release.
+- The Android APK is a Trusted Web Activity built with Bubblewrap and uploaded to the same Release.
+- `download-site/` is the download page, published to GitHub Pages by `.github/workflows/pages.yml`.
 
 ## Project layout
 
