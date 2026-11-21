@@ -64,7 +64,7 @@ jobs:
           files: files/*
           fail_on_unmatched_files: true
           body: |
-            **Download page:** https://truevex.github.io/Sentinel-Motherhood/
+            **Download page:** https://sentinel-motherhood-download.vercel.app
 
             | Device | File |
             | --- | --- |
