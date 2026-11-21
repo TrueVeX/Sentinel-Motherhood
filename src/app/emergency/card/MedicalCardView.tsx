@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { EMPTY_CARD, loadCard, saveCard, telHref, type MedicalCard } from "@/lib/kit";
+import { isActive, loadPrescriptions, type Prescription } from "@/lib/prescriptions";
+import { todayKey } from "@/lib/calendar";
 import { useI18n } from "../../I18n";
 
 const BLOOD = ["", "A+", "A−", "B+", "B−", "AB+", "AB−", "O+", "O−"];
@@ -23,11 +25,13 @@ export default function MedicalCardView() {
   const [card, setCard] = useState<MedicalCard>(EMPTY_CARD);
   const [editing, setEditing] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [rx, setRx] = useState<Prescription[]>([]);
 
   useEffect(() => {
     const c = loadCard();
     setCard(c);
     setEditing(!Object.values(c).some(Boolean)); // start in the form if it's empty
+    setRx(loadPrescriptions().filter((p) => isActive(p, todayKey())));
   }, []);
 
   function submit(e: React.FormEvent) {
@@ -99,6 +103,19 @@ export default function MedicalCardView() {
           {row("card.hospitalPhone", card.hospitalPhone, true)}
           {card.notes && row("card.notes", card.notes)}
         </dl>
+        {rx.length > 0 && (
+          <div className="med-rx">
+            <h4>📋 {t("rx.current")}</h4>
+            <ul>
+              {rx.map((p) => (
+                <li key={p.id}>
+                  <strong>{p.who === "baby" ? "👶 " : ""}{p.name}</strong>
+                  <span>{[p.dose, t(p.frequency), p.reason].filter(Boolean).join(" · ")}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </article>
       <div className="form-buttons start">
         <button type="button" className="button button-primary" onClick={() => setEditing(true)}>✎ {t("card.edit")}</button>

@@ -58,6 +58,14 @@
         });
         box.appendChild(dl); root.appendChild(box);
       }
+      var today = new Date(); today = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
+      var rx = (read("sm-prescriptions") || []).filter(function (p) { return (!p.start || p.start <= today) && (!p.end || p.end >= today); });
+      if (rx.length) {
+        var r = el("div"); r.className = "kit"; r.appendChild(el("h2", "Current medicines"));
+        var rl = el("ul");
+        rx.forEach(function (p) { rl.appendChild(el("li", (p.who === "baby" ? "Baby: " : "") + p.name + (p.dose ? " (" + p.dose + ")" : "") + (p.reason ? ": " + p.reason : ""))); });
+        r.appendChild(rl); root.appendChild(r);
+      }
       if (contacts.length) {
         var c = el("div"); c.className = "kit"; c.appendChild(el("h2", "Emergency contacts"));
         var ul = el("ul");

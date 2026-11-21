@@ -654,3 +654,50 @@ html[data-size="xl"] { zoom: 1.25; }
   .growth-form { grid-template-columns: 1fr; }
   .mood-pick { grid-template-columns: repeat(3, 1fr); }
 }
+
+
+/* ===================== Prescriptions & medicine guide ===================== */
+.rx-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.rx-toolbar .segmented { margin: 0; }
+.rx-toolbar .button { border: 0; cursor: pointer; }
+.rx-form { display: grid; gap: 12px; border-top: 1px solid var(--line); padding-top: 14px; }
+.rx-form .segmented { margin: 0; }
+.rx-form select { border: 1px solid var(--line); border-radius: 6px; padding: 11px 12px; background: var(--ivory); color: var(--deep); font: inherit; font-size: 13px; }
+.rx-match { background: #E8F1EC; border-radius: 10px; padding: 10px 14px; }
+.rx-match p { margin: 0 0 6px; font-size: 13px; line-height: 1.6; color: var(--ink); }
+.rx-photo { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.rx-photo label { cursor: pointer; }
+.rx-photo img { width: 88px; height: 88px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+.rx-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.rx-card { border: 1px solid #E7EEE9; border-left: 4px solid var(--teal); border-radius: 12px; padding: 14px 16px; display: grid; gap: 6px; background: white; }
+.rx-card.baby { border-left-color: #E59BB0; }
+.rx-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.rx-head h3 { margin: 0; flex: 1; color: var(--deep); font: 600 18px var(--serif); }
+.who-tag { font: 700 11px var(--sans); padding: 3px 9px; border-radius: 12px; background: #E3F2EA; color: #1F7A4D; white-space: nowrap; }
+.who-tag.baby { background: #FBE7EE; color: #A3405F; }
+.who-tag.both { background: #EDE7F6; color: #5B4694; }
+.rx-line { margin: 0; color: var(--ink); font-size: 14px; font-weight: 600; }
+.rx-reason { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.5; }
+.rx-meta { margin: 0; color: var(--muted); font-size: 12px; }
+.rx-info { background: var(--ivory); border-radius: 8px; padding: 8px 12px; font-size: 13px; }
+.rx-info summary { cursor: pointer; font-weight: 700; color: var(--teal); }
+.rx-info p { margin: 8px 0 0; line-height: 1.6; color: var(--ink); }
+.rx-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 13px; font-weight: 700; }
+.rx-actions a { color: var(--teal); }
+.rx-taken { flex: 0 0 auto; }
+.rx-finished summary { cursor: pointer; color: var(--muted); font-weight: 700; font-size: 13px; margin: 6px 0 10px; }
+.guide-list { display: grid; gap: 8px; }
+.guide-entry { border: 1px solid #E7EEE9; border-radius: 10px; padding: 10px 14px; background: white; }
+.guide-entry summary { cursor: pointer; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.guide-entry summary strong { color: var(--deep); font-size: 15px; }
+.guide-entry summary small { color: var(--muted); font-size: 11px; margin-left: auto; }
+.guide-entry p { margin: 10px 0 0; color: var(--ink); font-size: 14px; line-height: 1.6; }
+.guide-note { color: #8A3424 !important; font-size: 13px !important; }
+.med-rx { border-top: 2px solid #F0D9CE; padding: 12px 20px 16px; }
+.med-rx h4 { margin: 0 0 8px; color: #A4402F; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.med-rx ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.med-rx li { display: grid; gap: 2px; font-size: 15px; color: var(--ink); }
+.med-rx li span { color: var(--muted); font-size: 13px; }
+.photo-view { position: fixed; inset: 0; z-index: 100; background: rgba(15, 37, 41, .92); display: grid; place-items: center; padding: 20px; cursor: zoom-out; }
+.photo-view img { max-width: 100%; max-height: 90vh; border-radius: 10px; }
+.photo-view .dialog-close { position: absolute; top: 16px; right: 16px; }

@@ -5,6 +5,7 @@ import { useI18n } from "../I18n";
 
 const TRACKERS = [
   { href: "/care/kicks", icon: "👣", title: "care.kicks", help: "care.kicksHelp" },
+  { href: "/care/medicines", icon: "📋", title: "care.medicines", help: "care.medicinesHelp" },
   { href: "/care/vitamins", icon: "💊", title: "care.vitamins", help: "care.vitaminsHelp" },
   { href: "/care/vaccines", icon: "💉", title: "care.vaccines", help: "care.vaccinesHelp" },
   { href: "/care/baby-log", icon: "🍼", title: "care.babyLog", help: "care.babyLogHelp" },
