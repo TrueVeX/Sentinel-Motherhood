@@ -1,7 +1,7 @@
 {
   "name": "sentinel-motherhood-desktop",
   "productName": "Sentinel Motherhood",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Sentinel Motherhood: guiding motherhood, nurturing generations.",
   "author": { "name": "Revoori Krithika Reddy", "email": "246494956+TrueVeX@users.noreply.github.com" },
   "homepage": "https://sentinel-motherhood.vercel.app",
@@ -20,7 +20,7 @@
     "appId": "app.vercel.sentinelmotherhood.desktop",
     "productName": "Sentinel Motherhood",
     "copyright": "Made by Revoori Krithika Reddy",
-    "files": ["main.js", "offline.html", "build/icon.png"],
+    "files": ["main.js", "offline.html", "signin.html", "build/icon.png"],
     "directories": { "output": "dist", "buildResources": "build" },
     "win": {
       "target": [{ "target": "nsis", "arch": ["x64"] }],

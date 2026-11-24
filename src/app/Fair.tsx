@@ -22,40 +22,24 @@ function writeFlag(key: string, value: string | null) {
   } catch { /* ignore */ }
 }
 
+// The QR code always opens the live website, so any phone can scan it (no shared Wi-Fi needed).
+const QR_URL = "https://sentinel-motherhood.vercel.app";
+
 function QrCard() {
-  const [urls, setUrls] = useState<string[]>([]);
-  const [url, setUrl] = useState("");
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    fetch("/api/network")
-      .then((r) => r.json())
-      .then((data: { urls: string[] }) => {
-        setUrls(data.urls);
-        setUrl(data.urls[0] ?? window.location.origin);
-      })
-      .catch(() => setUrl(window.location.origin));
-  }, []);
-
-  useEffect(() => {
-    if (!url) return;
-    QRCode.toDataURL(url, { width: 320, margin: 1, color: { dark: "#123F46", light: "#FFFFFF" } })
+    QRCode.toDataURL(QR_URL, { width: 320, margin: 1, color: { dark: "#123F46", light: "#FFFFFF" } })
       .then(setImage)
       .catch(() => setImage(""));
-  }, [url]);
+  }, []);
 
   return (
     <div className="fair-card qr-card">
       <h3>Try it on your phone</h3>
-      <p>Scan with your camera. Your phone must be on the same Wi-Fi as this laptop.</p>
-      {image ? <img src={image} alt={`QR code for ${url}`} width={190} height={190} /> : <div className="qr-placeholder" />}
-      {urls.length > 1 ? (
-        <select value={url} onChange={(e) => setUrl(e.target.value)} aria-label="Network address">
-          {urls.map((u) => <option key={u} value={u}>{u}</option>)}
-        </select>
-      ) : (
-        <code>{url}</code>
-      )}
+      <p>Scan with your phone camera to open Sentinel.</p>
+      {image ? <img src={image} alt={`QR code for ${QR_URL}`} width={190} height={190} /> : <div className="qr-placeholder" />}
+      <code>sentinel-motherhood.vercel.app</code>
     </div>
   );
 }

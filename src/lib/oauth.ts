@@ -41,7 +41,15 @@ export function callbackUrl(provider: Provider, request: Request) {
 
 const random = () => crypto.randomBytes(24).toString("base64url");
 
-export type OAuthState = { state: string; nonce: string; verifier?: string; next: string };
+export type OAuthState = {
+  state: string;
+  nonce: string;
+  verifier?: string;
+  next: string;
+  /** Set when the desktop app started this sign-in (see app-signin.ts). */
+  app?: string;
+  appCode?: string;
+};
 
 export function newState(next: string, withPkce: boolean): OAuthState {
   return { state: random(), nonce: random(), next, ...(withPkce ? { verifier: random() + random() } : {}) };

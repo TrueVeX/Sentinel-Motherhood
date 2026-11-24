@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finish signing in · Sentinel Motherhood</title>
+  <style>
+    :root { --deep: #123F46; --teal: #247C78; --mint: #A8CFC3; --ivory: #F4F7F2; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--ivory); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; padding: 24px; }
+    .card { max-width: 440px; width: 100%; text-align: center; background: var(--deep); color: var(--ivory); border-radius: 18px; padding: 36px 28px; }
+    svg { width: 56px; height: 56px; }
+    h1 { font-family: Georgia, serif; font-weight: 500; margin: 14px 0 8px; font-size: 26px; }
+    p { color: rgba(244, 247, 242, .78); line-height: 1.6; margin: 0 0 18px; }
+    .code { font-size: 44px; font-weight: 700; letter-spacing: .12em; color: var(--ivory); background: rgba(168, 207, 195, .14); border: 1px solid rgba(168, 207, 195, .4); border-radius: 14px; padding: 16px; margin: 0 0 18px; }
+    .wait { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--mint); font-size: 14px; font-weight: 700; margin-bottom: 22px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mint); animation: pulse 1.2s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: .25; transform: scale(.7); } }
+    .links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    a { display: inline-block; text-decoration: none; border-radius: 8px; font-weight: 700; padding: 11px 18px; font-size: 13px; }
+    a.primary { background: var(--mint); color: var(--deep); }
+    a.ghost { color: var(--ivory); border: 1px solid rgba(244, 247, 242, .3); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <svg viewBox="0 0 48 48" fill="none" stroke="#A8CFC3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <g transform="translate(2 0.5)">
+        <circle cx="19" cy="10.5" r="5" />
+        <path d="M14 18.5C9.8 21 7.5 26 7.5 32.5V42" />
+        <path d="M24 18.2c2.2.6 4 1.5 5.4 2.6" />
+        <circle cx="32" cy="24.5" r="3.8" />
+        <path d="M28.6 26.8c-3.2-.6-7.8.4-10.8 2.8-2 1.6-1.8 3.8.6 4.4 3.6.9 8.8-.6 11.6-3.2" />
+        <path d="M10.5 29.5c2.5 5.8 9 8.8 16.2 7.6 4.6-.8 8.2-3.6 9.8-7.4" />
+      </g>
+    </svg>
+    <h1>Finish in your browser</h1>
+    <p>We opened <span id="provider">Google</span> sign-in in your web browser. After signing in, check the browser shows this code and press <strong>Yes, sign in the app</strong>.</p>
+    <div class="code" id="code">––– –––</div>
+    <div class="wait"><span class="dot"></span> Waiting for your browser…</div>
+    <div class="links">
+      <a class="primary" id="retry" href="https://sentinel-motherhood.vercel.app/login">Open the browser again</a>
+      <a class="ghost" href="https://sentinel-motherhood.vercel.app/login">Cancel</a>
+    </div>
+  </div>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const code = q.get("code") || "";
+    if (/^\d{6}$/.test(code)) document.getElementById("code").textContent = code.slice(0, 3) + " " + code.slice(3);
+    if (q.get("provider") === "Apple") document.getElementById("provider").textContent = "Apple";
+    const retry = q.get("retry");
+    if (retry && retry.startsWith("https://sentinel-motherhood.vercel.app/api/auth/")) document.getElementById("retry").href = retry;
+  </script>
+</body>
+</html>

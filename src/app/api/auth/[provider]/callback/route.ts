@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { homeFor, safeNext, signInWithProvider, startSession, type Provider } from "@/lib/auth";
 import { notify } from "@/lib/notify";
+import { createHandoff, HANDOFF_COOKIE, isAppCode, isAppId } from "@/lib/app-signin";
 import { callbackUrl, decodeState, exchangeCode, isConfigured, sameSecret, stateCookieName } from "@/lib/oauth";
 
 export const runtime = "nodejs";
@@ -38,7 +39,6 @@ async function finish(request: Request, provider: string, fields: { code?: strin
 
     const result = await signInWithProvider({ provider: p, ...identity });
     if (!result) return toLogin("oauth-failed");
-    await startSession(result.user.id);
     if (result.isNew) {
       await notify(result.user.id, `Welcome to Sentinel, ${result.user.name.split(" ")[0]}! Finish setting up your profile.`, "/onboarding");
     }
@@ -46,6 +46,15 @@ async function finish(request: Request, provider: string, fields: { code?: strin
     const target = result.user.onboarded
       ? next ?? homeFor(result.user)
       : next?.startsWith("/onboarding") ? next : "/onboarding"; // keep a journey picked on sign-up
+
+    // Started from the desktop app: ask the person to confirm, then the app signs itself in.
+    if (isAppId(saved.app) && isAppCode(saved.appCode)) {
+      const ticket = await createHandoff(saved.app, saved.appCode, result.user.id, target);
+      jar.set(HANDOFF_COOKIE, ticket, { httpOnly: true, sameSite: "lax", path: "/", maxAge: 600, secure: url.protocol === "https:" });
+      return NextResponse.redirect(new URL("/app-signin", url), 303);
+    }
+
+    await startSession(result.user.id);
     return NextResponse.redirect(new URL(target, url), 303);
   } catch (e) {
     console.error(`${p} sign-in failed:`, e instanceof Error ? e.message : e);

@@ -707,3 +707,9 @@ html[data-size="xl"] { zoom: 1.25; }
 .download-app-link:hover { background: var(--teal); color: #fff; }
 .app-download { display: block; text-align: center; margin-top: 10px; background: var(--deep); color: var(--ivory); font-weight: 700; font-size: 14px; padding: 14px; border-radius: 12px; text-decoration: none; }
 .app-download:hover { background: var(--teal); }
+
+/* Desktop app sign-in confirmation (shown in the normal browser) */
+.app-signin-code { font: 700 clamp(40px, 9vw, 64px)/1 var(--sans, system-ui); letter-spacing: .12em; color: var(--deep); background: #fff; border: 2px solid var(--mint); border-radius: 16px; text-align: center; padding: 24px 16px; margin: 0 0 20px; }
+.app-signin-confirm { width: 100%; }
+.app-signin-note { color: #637B78; font-size: 14px; line-height: 1.6; margin-top: 16px; }
+[data-theme="dark"] .app-signin-code { background: #17343A; color: #F4F7F2; border-color: #2C4D53; }
